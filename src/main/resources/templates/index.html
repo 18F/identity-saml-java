@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Identity</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link href="basscss.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-darken-1">
+  <div class="h5 px2 py1 bg-navy white center">
+    <img src="usa-flag.png"/>&nbsp;
+    An official website of the United States Government
+  </div>
+  <div class="py2 mb3 bg-white center">
+    <img src="seal.png" class="align-middle" width="100"/>
+  </div>
+  <div class="container px2">
+    <div class="py1 mb3 center">
+      <h2>Please log in to continue.</h2>
+      <form action="/login" method="POST">
+        <button type="submit" class="btn btn-outline bg-white navy">
+          <img src="login-gov.svg" class="align-middle" width="175"/>
+        </button>
+      </form>
+    </div>
+    <div class="clearfix py3 mxn1">
+      <div th:each="num: ${intstream}" class="sm-col sm-col-6 px1">
+        <div class="p2 mb2 bg-white rounded">
+          <div class="p1 mb1 bg-darken-1 col-7"></div>
+          <div class="p1 mb1 bg-darken-1 col-10"></div>
+          <div class="p1 mb1 bg-darken-1 col-5"></div>
+          <div class="p1 mb1 bg-darken-1 col-8"></div>
+          <div class="p1 mb1 bg-darken-1 col-6"></div>
+          <div class="p1 mb1 bg-darken-1 col-11"></div>
+          <div th:text="${num}" class="p1 mb1 bg-darken-1 col-8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
