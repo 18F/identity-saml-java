@@ -24,4 +24,4 @@ and `java-saml` which supports SAML-based SSO and SLO.
 
 ## Testing
 
-    $ mvm test
+    $ mvn test
