@@ -169,7 +169,7 @@ public class App {
 
       // Decrypt assertions
       if (samlResponse.getEncryptedAssertions().size() > 0) {
-          Credential encryptionCredential;
+          Credential encryptionCredential = null;
 
           KeyInfoCredentialResolver resolver = new StaticKeyInfoCredentialResolver(encryptionCredential);
           Decrypter decrypter = new Decrypter(null, resolver, null);
