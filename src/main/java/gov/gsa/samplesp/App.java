@@ -50,6 +50,7 @@ import org.opensaml.xml.security.keyinfo.KeyInfoCredentialResolver;
 import org.opensaml.xml.security.keyinfo.StaticKeyInfoCredentialResolver;
 import org.opensaml.xml.security.credential.Credential;
 import org.opensaml.xml.encryption.DecryptionException;
+import org.opensaml.xml.signature.X509Certificate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -141,6 +142,12 @@ public class App {
     return null;
   }
 
+  @RequestMapping("/logout")
+  String logout(HttpServletResponse response) throws IOException, MessageEncodingException {
+    return "logout";
+  }
+
+
   private SAMLMessageContext extractSAMLMessageContext(HttpServletRequest request) throws MessageDecodingException, SecurityException {
     BasicSAMLMessageContext messageContext = new BasicSAMLMessageContext();
 
@@ -169,9 +176,9 @@ public class App {
 
       // Decrypt assertions
       if (samlResponse.getEncryptedAssertions().size() > 0) {
-          Credential encryptionCredential = null;
-
-          KeyInfoCredentialResolver resolver = new StaticKeyInfoCredentialResolver(encryptionCredential);
+        //        Credential encryptionCredential = new X509CredentialImpl(ssoAgentConfig.getSAML2().getSSOAgentX509Credential());
+        Credential encryptionCredential = null;
+        KeyInfoCredentialResolver resolver = new StaticKeyInfoCredentialResolver(encryptionCredential);
           Decrypter decrypter = new Decrypter(null, resolver, null);
           decrypter.setRootInNewDocument(true);
 
@@ -191,6 +198,7 @@ public class App {
       }
 
       for (Assertion assertion : assertionList) {
+        System.out.println("AssertionList");
         System.out.println("assertion: " + assertion);
       }
       String email = "goobar";
