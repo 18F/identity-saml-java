@@ -125,6 +125,15 @@ public class App {
     return samlEndpoint;
   }
 
+  private Endpoint getIDPLogoutEndpoint() {
+    @SuppressWarnings("unchecked")
+    SAMLObjectBuilder<Endpoint> builder = (SAMLObjectBuilder<Endpoint>) getBuilder(SingleSignOnService.DEFAULT_ELEMENT_NAME);
+    Endpoint samlEndpoint = builder.buildObject();
+    samlEndpoint.setLocation("http://localhost:3000/api/saml/logout");
+    samlEndpoint.setResponseLocation("http://bar.com");
+    return samlEndpoint;
+  }
+
   @RequestMapping("/login")
   String login(HttpServletResponse response) throws IOException, MessageEncodingException {
     AuthnRequest req = buildAuthnRequest();
@@ -144,6 +153,18 @@ public class App {
 
   @RequestMapping("/logout")
   String logout(HttpServletResponse response) throws IOException, MessageEncodingException {
+    // AuthnRequest req = buildAuthnRequest();
+
+    // BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject> context = new BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject>();
+    // HttpServletResponseAdapter transport = new HttpServletResponseAdapter(response, false);
+    // context.setOutboundMessageTransport(transport);
+    // context.setPeerEntityEndpoint(getIDPLogoutEndpoint());
+    // context.setOutboundSAMLMessage(req);
+
+    // System.out.println("req = " + req);
+    // HTTPRedirectDeflateEncoder encoder = new HTTPRedirectDeflateEncoder();
+    // encoder.encode(context);
+    // System.out.println("location = " + response.getHeader("location"));
     return "logout";
   }
 
