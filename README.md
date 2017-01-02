@@ -1,27 +1,25 @@
-Sample Java SP
-==============
+# Login.gov Sample SP — Java / Spring
 
-[![Build Status](https://travis-ci.org/18F/identity-sp-java.svg?branch=master)](https://travis-ci.org/18F/identity-sp-java)
+An example service provider (SP) written in Java integrated with [Login.gov](https://login.gov). This simple web app is based on [Spring Boot](https://projects.spring.io/spring-boot/) and [OneLogin's SAML Java Toolkit](https://github.com/onelogin/java-saml), which supports SAML-based SSO and SLO.
 
-An example service provider (SP) written in Java that integrates with 18F's
-identity-idp.
+## Prerequisites
 
-This is a very simply app based the `spring` (specifically `spring-boot`)
-and `java-saml` which supports SAML-based SSO and SLO.
+- JDK 8+
+- Apache Maven
 
-## Dependecies
+On macOS, install Java and Maven using Homebrew:
 
-1. JDK 8+
-2. Apache maven
+```bash
+brew tap caskroom/cask
+brew cask install java
+brew install maven
+```
 
-## Building
+## Build and run
 
-    $ mvn compile
+```bash
+mvn compile
+mvn spring-boot:run
+```
 
-## Running
-
-    $ mvn spring-boot:run
-
-## Testing
-
-    $ mvn test
+View at `http://localhost:4567`
