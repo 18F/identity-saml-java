@@ -153,18 +153,18 @@ public class App {
 
   @RequestMapping("/logout")
   String logout(HttpServletResponse response) throws IOException, MessageEncodingException {
-    // AuthnRequest req = buildAuthnRequest();
+    AuthnRequest req = buildAuthnRequest();
 
-    // BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject> context = new BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject>();
-    // HttpServletResponseAdapter transport = new HttpServletResponseAdapter(response, false);
-    // context.setOutboundMessageTransport(transport);
-    // context.setPeerEntityEndpoint(getIDPLogoutEndpoint());
-    // context.setOutboundSAMLMessage(req);
+    BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject> context = new BasicSAMLMessageContext<SAMLObject, AuthnRequest, SAMLObject>();
+    HttpServletResponseAdapter transport = new HttpServletResponseAdapter(response, false);
+    context.setOutboundMessageTransport(transport);
+    context.setPeerEntityEndpoint(getIDPLogoutEndpoint());
+    context.setOutboundSAMLMessage(req);
 
-    // System.out.println("req = " + req);
-    // HTTPRedirectDeflateEncoder encoder = new HTTPRedirectDeflateEncoder();
-    // encoder.encode(context);
-    // System.out.println("location = " + response.getHeader("location"));
+    System.out.println("req = " + req);
+    HTTPRedirectDeflateEncoder encoder = new HTTPRedirectDeflateEncoder();
+    encoder.encode(context);
+    System.out.println("location = " + response.getHeader("location"));
     return "logout";
   }
 
